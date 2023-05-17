@@ -7,7 +7,7 @@ const Header = () => {
     const [banners,setBanners] = useState([])
 
     useEffect(()=>{
-        fetch('http://localhost:5000/banners')
+        fetch('https://my-toy-shop-server.vercel.app/banners')
         .then(res=>res.json())
         .then(data=>setBanners(data))
     },[])
