@@ -13,9 +13,9 @@ const Router = createBrowserRouter([
                 element:<HomePage/>
             },
             {
-                path:'/categoryToys/:category',
+                path:'/categoryToys',
                 element:<CategoryAllToy/>,
-                loader:({params})=>fetch(``)
+                loader:({params})=>fetch(`http://localhost:5000/allToy`)
             }
         ]
     }
