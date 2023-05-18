@@ -6,7 +6,7 @@ const CategoryAllToy = () => {
     return (
         <div className='container mx-auto'>
             <h1>Total Toy Find {toys.length}</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-24'>
                 {
                     toys.map(toy=><ToyCart key={toy._id} toy={toy}/>)
                 }

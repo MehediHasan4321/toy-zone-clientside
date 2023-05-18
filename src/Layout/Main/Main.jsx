@@ -1,8 +1,8 @@
 import React from 'react';
-import NavBar from '../NavBar/NavBar';
 import { Outlet } from 'react-router-dom';
-import Footer from '../Footer/Footer';
 import useTitle from '../../CustomLoader/UseTitle';
+import NavBar from '../ShareCompo/NavBar/NavBar';
+import Footer from '../ShareCompo/Footer/Footer';
 
 
 const Main = () => {
