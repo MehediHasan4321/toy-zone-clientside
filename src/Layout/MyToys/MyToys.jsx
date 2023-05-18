@@ -1,13 +1,53 @@
 import { useLoaderData } from "react-router-dom";
 import MyToysTable from "./MyToysTable";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
     const toys = useLoaderData()
     const handleUpdate = id=>{
-        console.log(id)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You Want To Update this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Update it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Update!',
+                'Your file has been Updated.',
+                'success'
+              )
+            }
+          })
     }
     const handleDelete = id=>{
-        console.log(id)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://my-toy-shop-server.vercel.app/allToy/${id}`,{
+                    method:"DELETE"
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(data)
+                })
+            //   Swal.fire(
+            //     'Deleted!',
+            //     'Your file has been deleted.',
+            //     'success'
+            //   )
+            }
+          })
     }
     return (
         <div className=' container mx-auto'>
