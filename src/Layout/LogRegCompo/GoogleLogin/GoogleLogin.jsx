@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const GoogleLogin = () => {
+    const {createAccountWithGoogle} =useContext(AuthContext)
     const [error,setError] = useState('')
     setTimeout(()=> setError(''),7000)
+    const navigate = useNavigate()
     const handleGoogleLogin = ()=>{
-
+        createAccountWithGoogle()
+        .then(()=>{
+            navigate('/')
+        })
+        .catch(err=>setError(err.message))
     }
     return (
         <>
