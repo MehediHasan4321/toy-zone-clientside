@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 import Slider from 'react-slick';
 import Banner from './Banner';
 const Header = () => {
-    const [banners,setBanners] = useState([])
+    const [banners, setBanners] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('https://my-toy-shop-server.vercel.app/banners')
-        .then(res=>res.json())
-        .then(data=>setBanners(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setBanners(data))
+    }, [])
 
     console.log(banners)
     const settings = {
@@ -25,12 +25,12 @@ const Header = () => {
         cssEase: "linear"
     };
     return (
-
-        <Slider {...settings}>
-            {
-                banners.map(banner => <Banner banner={banner}/>)
-            }
-        </Slider>
+            <Slider {...settings}>
+                {
+                    banners.map(banner => <Banner key={banner._id} banner={banner} />)
+                }
+            </Slider>
+    
 
     );
 };

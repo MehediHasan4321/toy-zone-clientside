@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = ({ banner }) => {
     return (
-        <div className='h-[60vh] w-full container mx-auto flex items-center pl-32 rounded-lg' style={{ backgroundImage: `linear-gradient(80deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(${banner.img})`, backgroundPosition: 'right',backgroundRepeat:'no-repeat' }}>
+        <div className='h-[60vh]  container mx-auto flex items-center pl-32 rounded-lg' style={{ backgroundImage: `linear-gradient(80deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(${banner.img})`, backgroundPosition: 'right',backgroundRepeat:'no-repeat' }}>
             <div className='text-white w-[60%]'>
                 <h1 className='text-6xl font-semibold leading-[70px]'>{banner.title ? banner.title : ''}</h1>
                 <p className='my-8 leading-8'>{banner.description}</p>
