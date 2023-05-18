@@ -2,12 +2,14 @@ import React, { useContext, useState } from 'react';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
-
+import { getAuth, updateProfile } from 'firebase/auth'
+import app from '../../../Firebase/firebase.config';
 const Regeister = () => {
-    const {createAccountWithEmail} =useContext(AuthContext)
-    const [error,setError] = useState('')
+    const { createAccountWithEmail } = useContext(AuthContext)
+    const [error, setError] = useState('')
     setTimeout(() => setError(''), 7000);
     const navigate = useNavigate()
+    const auth = getAuth(app)
     const handleSignUp = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -15,14 +17,19 @@ const Regeister = () => {
         const email = form.email.value;
         const password = form.password.value;
         const photoUrl = form.url.value
-        createAccountWithEmail(email,password)
-        .then(()=>{
-            navigate('/')
-            form.reset()
-        })
-        .catch(err=>{
-            setError(err.message)
-        })
+        createAccountWithEmail(email, password)
+            .then(() => {
+                updateProfile(auth.currentUser, {
+                    displayName: name, photoURL: photoUrl
+                })
+                    .then(() => { })
+                    .catch(err => setError(err.message))
+                navigate('/')
+                form.reset()
+            })
+            .catch(err => {
+                setError(err.message)
+            })
     }
     return (
         <div className='container mx-auto my-24 flex justify-center gap-8'>

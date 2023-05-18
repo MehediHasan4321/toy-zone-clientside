@@ -13,10 +13,7 @@ const Header = () => {
             .then(data => setBanners(data))
             .finally(() => setIsLoading(false))
     }, [])
-
-    console.log(banners)
     const settings = {
-        dots: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
