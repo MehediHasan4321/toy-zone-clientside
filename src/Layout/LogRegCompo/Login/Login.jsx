@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
 
 const Login = () => {
+    const handleLogin = e=>{
+        e.preventDefault()
+        const form = e.target;
+        const email= form.email.value;
+        const password = form.password.value
+        console.log(email,password)
+    }
     return (
         <div className='container mx-auto my-24 flex justify-center gap-8'>
             <div className='p-5 shadow-xl w-96 min-h-96'>
@@ -10,7 +17,7 @@ const Login = () => {
                     <h1 className='text-2xl font-semibold text-center'>Login Your Account</h1>
                     <p className='text-gray-600 mt-3'>Don't Have An Account Yet ? <Link className='text-purple-400 text-lg font-semibold' to={'/logReg/regeister'}>Sign Up</Link></p>
                 </div>
-                <form>
+                <form onSubmit={handleLogin}>
                     <div className='my-4'>
                         <label className=' font-semibold text-lg' htmlFor="email">Email</label>
                         <input type="email" required name="email" id="email" className='border-[1px] py-2 w-full rounded-md px-3 mt-3' placeholder='Enter Your Email' />

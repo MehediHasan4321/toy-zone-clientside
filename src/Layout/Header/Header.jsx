@@ -3,13 +3,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 import Slider from 'react-slick';
 import Banner from './Banner';
+import Loading from '../ShareCompo/Loading/Loading';
 const Header = () => {
     const [banners, setBanners] = useState([])
-
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         fetch('https://my-toy-shop-server.vercel.app/banners')
             .then(res => res.json())
             .then(data => setBanners(data))
+            .finally(() => setIsLoading(false))
     }, [])
 
     console.log(banners)
@@ -24,15 +26,19 @@ const Header = () => {
         autoplaySpeed: 5000,
         cssEase: "linear"
     };
-    return (
+    if (!isLoading) {
+        return (
             <Slider {...settings}>
                 {
                     banners.map(banner => <Banner key={banner._id} banner={banner} />)
                 }
             </Slider>
-    
 
-    );
+
+        );
+    }else {
+        return <Loading/>
+    }
 };
 
 export default Header;
