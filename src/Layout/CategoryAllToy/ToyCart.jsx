@@ -1,8 +1,9 @@
 import React from 'react';
 import Rating from '../ShareCompo/Rating/Rating';
+import { Link } from 'react-router-dom';
 
 const ToyCart = ({ toy }) => {
-    const { name, img, rating, price } = toy
+    const { name, img, rating, price,_id } = toy
     return (
         <div className='w-96 h-[520px] border-[1px] rounded-md relative'>
             <div className='w-full h-80 bg-gray-300 p-3'>
@@ -14,7 +15,7 @@ const ToyCart = ({ toy }) => {
                     <h4 className='text-lg font-semibold'>Price : ${price}</h4>
                     <Rating num={rating}/>
                 </div>
-                <button className='bg-amber-400 w-[350px] py-2 font-semibold text-lg absolute bottom-2 rounded-md'>View Details</button>
+                <Link to={`/toyDetails/${_id}`} className='bg-amber-400 w-[350px] py-2 font-semibold text-lg absolute bottom-2 rounded-md text-center'>View Details</Link>
             </div>
         </div>
     );

@@ -5,6 +5,8 @@ import CategoryAllToy from '../Layout/CategoryAllToy/CategoryAllToy';
 import LogRegCompo from '../Layout/LogRegCompo/LogRegCompo';
 import Login from '../Layout/LogRegCompo/Login/Login';
 import Regeister from '../Layout/LogRegCompo/Regeister/Regeister';
+import PrivetRoute from '../PrivetRoute/PrivetRoute';
+import ToyDetails from '../PrivetRoute/ToyDetails/ToyDetails';
 
 const Router = createBrowserRouter([
     {
@@ -19,6 +21,11 @@ const Router = createBrowserRouter([
                 path:'/categoryToys/:category',
                 element:<CategoryAllToy/>,
                 loader:({params})=>fetch(`https://my-toy-shop-server.vercel.app/allToy/${params.category}`)
+            },
+            {
+                path:'/toyDetails/:id',
+                element:<PrivetRoute><ToyDetails/></PrivetRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/toyDetails/${params.id}`)
             }
         ]
     },

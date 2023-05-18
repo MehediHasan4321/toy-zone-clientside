@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
@@ -7,6 +7,8 @@ const Login = () => {
     const {loginWithEmailPass} = useContext(AuthContext)
     const [error,setError] = useState('')
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
     setTimeout(() => {
         setError('')
     }, 7000);
@@ -17,7 +19,7 @@ const Login = () => {
         const password = form.password.value
         loginWithEmailPass(email,password)
         .then(()=>{
-            navigate('/')
+            navigate(from)
             form.reset()
         })
         .catch(err=>{
