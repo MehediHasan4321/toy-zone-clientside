@@ -6,7 +6,7 @@ const ToyCart = ({ toy }) => {
     const { name, img, rating, price,_id } = toy
     return (
         <div className='w-96 h-[520px] border-[1px] rounded-md relative'>
-            <div className='w-full h-80 bg-gray-300 p-3'>
+            <div className='w-full h-80 bg-gray-100 p-3'>
                 <img className='w-full h-full' src={img} alt="" />
             </div>
             <div className='p-4'>

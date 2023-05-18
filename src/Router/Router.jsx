@@ -7,6 +7,7 @@ import Login from '../Layout/LogRegCompo/Login/Login';
 import Regeister from '../Layout/LogRegCompo/Regeister/Regeister';
 import PrivetRoute from '../PrivetRoute/PrivetRoute';
 import ToyDetails from '../PrivetRoute/ToyDetails/ToyDetails';
+import AllToys from '../Layout/AllToys/AllToys';
 
 const Router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const Router = createBrowserRouter([
                 path:'/toyDetails/:id',
                 element:<PrivetRoute><ToyDetails/></PrivetRoute>,
                 loader:({params})=>fetch(`http://localhost:5000/toyDetails/${params.id}`)
+            },
+            {
+                path:'/allToy',
+                element:<AllToys/>
             }
         ]
     },
