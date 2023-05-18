@@ -1,14 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Login = () => {
+    const {loginWithEmailPass} = useContext(AuthContext)
+    const [error,setError] = useState('')
+    const navigate = useNavigate()
+    setTimeout(() => {
+        setError('')
+    }, 7000);
     const handleLogin = e=>{
         e.preventDefault()
         const form = e.target;
         const email= form.email.value;
         const password = form.password.value
-        console.log(email,password)
+        loginWithEmailPass(email,password)
+        .then(()=>{
+            navigate('/')
+            form.reset()
+        })
+        .catch(err=>{
+            setError(err.message)
+        })
     }
     return (
         <div className='container mx-auto my-24 flex justify-center gap-8'>
@@ -35,6 +49,7 @@ const Login = () => {
                 </form>
                 
                 <GoogleLogin/>
+                <small className='text-red-400'>{error}</small>
             </div>
             <img src="https://media.istockphoto.com/id/1281150061/vector/register-account-submit-access-login-password-username-internet-online-website-concept.jpg?s=612x612&w=0&k=20&c=9HWSuA9IaU4o-CK6fALBS5eaO1ubnsM08EOYwgbwGBo=" alt="" />
         </div>

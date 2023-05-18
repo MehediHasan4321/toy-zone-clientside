@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Regeister = () => {
+    const {createAccountWithEmail} =useContext(AuthContext)
+    const [error,setError] = useState('')
+    setTimeout(() => setError(''), 7000);
+    const navigate = useNavigate()
     const handleSignUp = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -10,8 +15,14 @@ const Regeister = () => {
         const email = form.email.value;
         const password = form.password.value;
         const photoUrl = form.url.value
-        const user = {name,email,password,photoUrl}
-        console.log(user)
+        createAccountWithEmail(email,password)
+        .then(()=>{
+            navigate('/')
+            form.reset()
+        })
+        .catch(err=>{
+            setError(err.message)
+        })
     }
     return (
         <div className='container mx-auto my-24 flex justify-center gap-8'>
@@ -44,6 +55,7 @@ const Regeister = () => {
                 </form>
 
                 <GoogleLogin />
+                <small className='text-red-500'>{error}</small>
             </div>
         </div>
     );
