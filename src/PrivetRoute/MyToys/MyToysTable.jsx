@@ -1,20 +1,19 @@
 import React, { useContext } from 'react';
-import { FaTrash } from 'react-icons/fa';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { FaTrash } from 'react-icons/fa';
+import Rating from '../../Layout/ShareCompo/Rating/Rating';
 
-const MyToysTable = ({ toy,updateModal,handleUpdate,handleDelete }) => {
-    const {name,img,price,seller,category,_id}= toy || {}
+const MyToysTable = ({toy,updateModal,findToy,deleteToy}) => {
+    const {name,img,price,rating,seller,category,_id} = toy || {}
     const {user} = useContext(AuthContext)
     return (
         <tr>
-            <th>
-             <FaTrash onClick={()=>handleDelete(_id)} className='text-2xl'/>   
-            </th>
-            <td>
-                <div className="flex items-center space-x-3 w-48">
+            <td><FaTrash onClick={()=>deleteToy(_id)} className='text-2xl text-purple-600'/></td>
+            <td className='w-96 overflow-hidden'>
+                <div className="flex items-center space-x-3">
                     <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
-                            <img src={img} alt="Avatar Tailwind CSS Component" />
+                            <img src={img} alt="Toy Images" />
                         </div>
                     </div>
                     <div>
@@ -23,15 +22,17 @@ const MyToysTable = ({ toy,updateModal,handleUpdate,handleDelete }) => {
                     </div>
                 </div>
             </td>
-            <th>{price}</th>
             <td>
-                <h1>{user?.displayName}</h1>
-                <br />
+                <Rating num={rating}/>
+            </td>
+            <td>{price}</td>
+            <td>
+               <h1>{user?.displayName}</h1>
                 <span className="badge badge-ghost badge-sm">{seller}</span>
             </td>
             <td>12</td>
             <th>
-                <label onClick={()=>handleUpdate(_id)} htmlFor={updateModal} className="btn btn-ghost btn-xs">Update</label>
+                <label onClick={()=>findToy(_id)} htmlFor={updateModal} className="btn btn-ghost btn-xs">update</label>
             </th>
         </tr>
     );

@@ -8,7 +8,8 @@ import Regeister from '../Layout/LogRegCompo/Regeister/Regeister';
 import PrivetRoute from '../PrivetRoute/PrivetRoute';
 import ToyDetails from '../PrivetRoute/ToyDetails/ToyDetails';
 import AllToys from '../Layout/AllToys/AllToys';
-import MyToys from '../Layout/MyToys/MyToys';
+import Mytoys from '../PrivetRoute/MyToys/Mytoys';
+
 
 const Router = createBrowserRouter([
     {
@@ -35,7 +36,7 @@ const Router = createBrowserRouter([
             },
             {
                 path:'/myToys/:email',
-                element:<PrivetRoute><MyToys/></PrivetRoute>,
+                element:<PrivetRoute><Mytoys/></PrivetRoute>,
                 loader:({params})=>fetch(`https://my-toy-shop-server.vercel.app/myToys/${params.email}`)
             }
         ]
