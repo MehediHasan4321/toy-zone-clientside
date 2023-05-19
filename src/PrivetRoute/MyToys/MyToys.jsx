@@ -7,11 +7,13 @@ const Mytoys = () => {
     const allToy = useLoaderData()
     const [toys, setToys] = useState(allToy)
     const [updateAble, setUpdateAble] = useState({})
-    const [toyCate, setCategory] = useState(updateAble?.category)
+    const [toyCate, setCategory] = useState(updateAble.category)
+
     const findToy = id => {
         setUpdateAble(toys.find(toy => toy._id === id))
     }
-
+    console.log('toyCata', toyCate)
+    console.log('updateable',updateAble.category)
     const toyCategory = ["marvel", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
     const updateToy = (e) => {
         e.preventDefault()
@@ -24,7 +26,6 @@ const Mytoys = () => {
         const details = form.details.value;
         const quantity = form.quantity.value
         const updateToy = { name, img, price, rating, category, details, quantity }
-
         Swal.fire({
             title: 'Are you sure?',
             text: "You Want To Update this Toy!",
@@ -43,6 +44,7 @@ const Mytoys = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.modifiedCount > 0) {
+                            form.reset()
                             Swal.fire(
                                 'Updated!',
                                 'Your file has been Update.',
@@ -143,9 +145,9 @@ const Mytoys = () => {
                             </div>
                             <div className='w-1/4'>
                                 <label htmlFor="category">Toy Category</label>
-                                <select name="category" id="category" value={toyCate} defaultValue={toyCate} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
+                                <select name="category" id="category" onChange={() => setCategory(toyCate)}  value={toyCate} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
                                     {
-                                        toyCategory.map((toy, index) => <option onClick={() => setCategory(toy)} key={index} value={toy}>{toy}</option>)
+                                        toyCategory.map((toy, index) => <option key={index} value={toy}>{toy}</option>)
                                     }
                                 </select>
                             </div>
