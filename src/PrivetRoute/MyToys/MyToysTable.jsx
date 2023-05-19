@@ -4,7 +4,7 @@ import { FaTrash } from 'react-icons/fa';
 import Rating from '../../Layout/ShareCompo/Rating/Rating';
 
 const MyToysTable = ({toy,updateModal,findToy,deleteToy}) => {
-    const {name,img,price,rating,seller,category,_id} = toy || {}
+    const {name,img,price,rating,seller,category,_id,quantity} = toy || {}
     const {user} = useContext(AuthContext)
     return (
         <tr>
@@ -30,7 +30,7 @@ const MyToysTable = ({toy,updateModal,findToy,deleteToy}) => {
                <h1>{user?.displayName}</h1>
                 <span className="badge badge-ghost badge-sm">{seller}</span>
             </td>
-            <td>12</td>
+            <td>{quantity}</td>
             <th>
                 <label onClick={()=>findToy(_id)} htmlFor={updateModal} className="btn btn-ghost btn-xs">update</label>
             </th>
