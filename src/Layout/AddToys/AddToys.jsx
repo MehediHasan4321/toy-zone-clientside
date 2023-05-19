@@ -4,7 +4,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const AddToys = () => {
-    const toyCategory = ["marver", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
+    const toyCategory = ["marvel", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
     const [toyCate, setToyCate] = useState('')
     const [previewToy, setPreviewToy] = useState({})
     const {user} = useContext(AuthContext)

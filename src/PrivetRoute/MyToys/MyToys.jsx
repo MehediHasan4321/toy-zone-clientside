@@ -12,7 +12,7 @@ const Mytoys = () => {
         setUpdateAble(toys.find(toy => toy._id === id))
     }
 
-    const toyCategory = ["marver", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
+    const toyCategory = ["marvel", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
     const updateToy = (e) => {
         e.preventDefault()
         const form = e.target;
