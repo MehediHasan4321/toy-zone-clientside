@@ -7,25 +7,24 @@ const Mytoys = () => {
     const allToy = useLoaderData()
     const [toys, setToys] = useState(allToy)
     const [updateAble, setUpdateAble] = useState({})
+    const [toyCate, setCategory] = useState(updateAble?.category)
     const findToy = id => {
         setUpdateAble(toys.find(toy => toy._id === id))
     }
-    
+
     const toyCategory = ["marver", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
-    console.log(updateAble)
     const updateToy = (e) => {
         e.preventDefault()
         const form = e.target;
         const name = form.name.value;
-        const img= form.url.value;
+        const img = form.url.value;
         const price = form.price.value;
         const rating = form.rating.value;
         const category = form.category.value;
-        const details = form.details.value
-        const updateToy = {
-            name,img,price,rating,category,details
-        }
-        
+        const details = form.details.value;
+        const quantity = form.quantity.value
+        const updateToy = { name, img, price, rating, category, details, quantity }
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You Want To Update this Toy!",
@@ -36,12 +35,22 @@ const Mytoys = () => {
             confirmButtonText: 'Yes, Update it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log(updateToy)
-                Swal.fire(
-                    'Updated!',
-                    'Your file has been Update.',
-                    'success'
-                )
+                fetch(`http://localhost:5000/allToy/${updateAble._id}`, {
+                    method: "PUT",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(updateToy)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.modifiedCount > 0) {
+                            Swal.fire(
+                                'Updated!',
+                                'Your file has been Update.',
+                                'success'
+                            )
+                        }
+                    })
+
             }
         })
     }
@@ -126,7 +135,7 @@ const Mytoys = () => {
                             </div>
                             <div className='w-1/4'>
                                 <label htmlFor="quantity">Toy Quantity</label>
-                                <input type="number"  name="quantity" id="quantity" defaultValue={updateAble?.quantity} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
+                                <input type="number" name="quantity" id="quantity" defaultValue={updateAble?.quantity} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
                             </div>
                             <div className='w-1/4'>
                                 <label htmlFor="rating">Toy Rating</label>
@@ -134,9 +143,9 @@ const Mytoys = () => {
                             </div>
                             <div className='w-1/4'>
                                 <label htmlFor="category">Toy Category</label>
-                                <select name="category" id="category" defaultValue={updateAble?.category} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
+                                <select name="category" id="category" value={toyCate} defaultValue={toyCate} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
                                     {
-                                        toyCategory.map((toy,index) => <option defaultValue={toyCategory[index]} key={toy} value={toy}>{toy}</option>)
+                                        toyCategory.map((toy, index) => <option onClick={() => setCategory(toy)} key={index} value={toy}>{toy}</option>)
                                     }
                                 </select>
                             </div>
@@ -149,11 +158,11 @@ const Mytoys = () => {
                         <input type="submit" className='bg-amber-400 font-semibold py-2 px-6 mt-3 w-full rounded-md' value="Update" />
                     </form>
                     <div className="modal-action">
-                    
-                        <label htmlFor="updateModal" className="btn">Close</label>
+
+                        <label onClick={() => setUpdateAble({})} htmlFor="updateModal" className="btn">Close</label>
+                    </div>
                 </div>
-                </div>
-                
+
             </div>
         </div>
     );
