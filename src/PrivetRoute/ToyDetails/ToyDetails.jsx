@@ -12,7 +12,8 @@ const ToyDetails = () => {
                 <h1 className='text-2xl font-semibold'>{toy?.name}</h1>
                 <p className='text-xl font-semibold'>Price : ${toy?.price}</p>
                 <p className='text-lg'>Rating : {toy?.rating}<Rating num={toy?.rating} /></p>
-                <p>{toy?.details}</p>
+                <p className='text-lg font-semibold'>{toy.quantity? toy.quantity : 'Sold Out'}</p>
+                <p>Stock : {toy?.details}</p>
                 <div className='flex gap-4 mt-8'>
                     <button className='px-6 py-2 bg-amber-400 font-semibold'>Add To Cart</button>
                     <button className='px-6 py-2 bg-amber-400 font-semibold'>Buy Now</button>
