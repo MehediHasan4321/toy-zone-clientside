@@ -8,7 +8,7 @@ const NavBar = () => {
         logOut()
     }
     return (
-        <div className='bg-gray-200 h-24'>
+        <div className='bg-[#F2F2F2] h-24'>
             <div className="container mx-auto h-full flex justify-between items-center">
                 <Link to={'/'} className='text-2xl font-bold cursor-pointer'>Toy Zone</Link>
                 <div className='flex items-center gap-6 font-semibold'>
