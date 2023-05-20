@@ -8,13 +8,15 @@ const Mytoys = () => {
     const [toys, setToys] = useState(allToy)
     const [updateAble, setUpdateAble] = useState({})
     const [toyCate, setCategory] = useState(updateAble.category)
+    const [subCate,setSubCete] = useState(updateAble.subCategory)
 
     const findToy = id => {
         setUpdateAble(toys.find(toy => toy._id === id))
     }
     console.log('toyCata', toyCate)
-    console.log('updateable',updateAble.category)
+    console.log('updateable', updateAble.category)
     const toyCategory = ["marvel", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
+    const toySubCategory = ["Action","Villain","Other"]
     const updateToy = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -23,9 +25,11 @@ const Mytoys = () => {
         const price = form.price.value;
         const rating = form.rating.value;
         const category = form.category.value;
+        const subCategory= form.subCategory.value
         const details = form.details.value;
         const quantity = form.quantity.value
-        const updateToy = { name, img, price, rating, category, details, quantity }
+        const updateToy = { name, img, price, rating, category,subCategory, details, quantity }
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You Want To Update this Toy!",
@@ -99,6 +103,7 @@ const Mytoys = () => {
                                 Details
                             </th>
                             <th>Rating</th>
+                            <th>Category</th>
                             <th>Price</th>
                             <th>Seller</th>
                             <th>Quantity</th>
@@ -131,23 +136,34 @@ const Mytoys = () => {
                             </div>
                         </div>
                         <div className='flex gap-5'>
-                            <div className='w-1/4'>
+                            <div className='w-1/3'>
                                 <label htmlFor="price">Toy Price</label>
                                 <input type="number" defaultValue={updateAble?.price} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2' name="price" id="price" />
                             </div>
-                            <div className='w-1/4'>
+                            <div className='w-1/3'>
                                 <label htmlFor="quantity">Toy Quantity</label>
                                 <input type="number" name="quantity" id="quantity" defaultValue={updateAble?.quantity} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
                             </div>
-                            <div className='w-1/4'>
+                            <div className='w-1/3'>
                                 <label htmlFor="rating">Toy Rating</label>
                                 <input type="rating" name="rating" id="rating" defaultValue={updateAble?.rating} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
                             </div>
-                            <div className='w-1/4'>
+
+                        </div>
+                        <div className='flex gap-5'>
+                            <div className='w-1/2'>
                                 <label htmlFor="category">Toy Category</label>
-                                <select name="category" id="category" onChange={() => setCategory(toyCate)}  value={toyCate} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
+                                <select name="category" id="category" onChange={() => setCategory(toyCate)} value={toyCate} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
                                     {
                                         toyCategory.map((toy, index) => <option key={index} value={toy}>{toy}</option>)
+                                    }
+                                </select>
+                            </div>
+                            <div className='w-1/2'>
+                                <label htmlFor="subCategory">Toy Sub-Category</label>
+                                <select name="subCategory" id="subCategory" onChange={() => setSubCete(subCate)}  value={subCate} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
+                                    {
+                                        toySubCategory.map((toy, index) => <option key={index} value={toy}>{toy}</option>)
                                     }
                                 </select>
                             </div>
