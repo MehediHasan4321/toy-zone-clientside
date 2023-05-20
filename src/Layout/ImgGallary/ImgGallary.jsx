@@ -4,7 +4,7 @@ import ImgGallaryCart from './ImgGallaryCart';
 const ImgGallary = () => {
     const [imgs,setImg] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/imgGallary')
+        fetch('https://my-toy-shop-server.vercel.app/imgGallary')
         .then(res=>res.json())
         .then(data=>setImg(data))
     },[])
