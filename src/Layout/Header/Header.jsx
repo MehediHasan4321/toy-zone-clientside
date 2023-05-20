@@ -9,7 +9,7 @@ const Header = () => {
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         setIsLoading(true)
-        fetch('https://my-toy-shop-server.vercel.app/banners')
+        fetch('https://my-toy-shop-server.vercel.app/banner')
             .then(res => res.json())
             .then(data => setBanners(data))
             .finally(() => setIsLoading(false))
