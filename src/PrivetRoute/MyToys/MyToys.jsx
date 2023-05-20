@@ -108,7 +108,7 @@ const Mytoys = () => {
                     <tbody>
 
                         {
-                            toys.map(toy => <MyToysTable key={toy._id} toy={toy} updateModal={'updateModal'} deleteToy={deleteToy} findToy={findToy} />)
+                            toys?.map(toy => <MyToysTable key={toy._id} toy={toy} updateModal={'updateModal'} deleteToy={deleteToy} findToy={findToy} />)
                         }
                     </tbody>
                 </table>

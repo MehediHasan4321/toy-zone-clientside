@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react';
 import Rating from '../ShareCompo/Rating/Rating';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import { key } from 'localforage';
 
 const AddToys = () => {
     const toyCategory = ["marvel", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
+    const toySubCategory = ["Action","Villain","Other"]
     const [toyCate, setToyCate] = useState('')
+    const {toySubCat,setToySubCat} = useState('')
     const [previewToy, setPreviewToy] = useState({})
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const handleAddToyCartPreview = e => {
         e.preventDefault()
         const form = e.target;
@@ -17,12 +20,15 @@ const AddToys = () => {
         const rating = form.rating.value;
         const quantity = form.quantity.value;
         const category = form.category.value
+        const subCategory = form.subCategory.value
         const seller = form.email.value;
+        const sellerName  = form.sellerName.value
         const details = form.details.value
-        const toy = { name, img, price, rating, quantity, category,seller,details }
+        const toy = { name, img, price, rating, quantity, category,subCategory, seller, sellerName, details }
+        
         setPreviewToy(toy)
     }
-    const addToytoShop = ()=>{
+    const addToytoShop = () => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You Want To Add this Toy!",
@@ -65,28 +71,42 @@ const AddToys = () => {
                         <input type="url" name="url" required id="url" className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
                     </div>
                     <div className='w-1/3'>
-                        <label htmlFor="email">Toy Seller</label>
-                        <input type="email" name="email" required id="email" value={user?.email} className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
-                    </div>
-                </div>
-                <div className='flex gap-5'>
-                    <div className='w-1/4'>
                         <label htmlFor="price">Toy Price</label>
                         <input type="number" required className='w-full py-2 px-2 border-[1px] rounded-md mt-2' name="price" id="price" />
                     </div>
-                    <div className='w-1/4'>
+                </div>
+                <div className='flex gap-5'>
+                    <div className='w-1/3'>
                         <label htmlFor="quantity">Toy Quantity</label>
                         <input type="number" name="quantity" id="quantity" required className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
                     </div>
-                    <div className='w-1/4'>
+                    <div className='w-1/3'>
                         <label htmlFor="rating">Toy Rating</label>
                         <input type="rating" name="rating" id="rating" required className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
                     </div>
-                    <div className='w-1/4'>
+                    <div className='w-1/3'>
+                        <label htmlFor="email">Toy Seller Email</label>
+                        <input type="email" name="email" required id="email" value={user?.email} className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
+                    </div>
+                    <div className='w-1/3'>
+                        <label htmlFor="SellerName">Toy Seller Name</label>
+                        <input type="text" name="SellerName" required id="sellerName" value={user?.displayName} className='w-full py-2 px-2 border-[1px] rounded-md mt-2' />
+                    </div>
+                </div>
+                <div className='flex gap-5 my-4'>
+                    <div className='w-1/2'>
                         <label htmlFor="category">Toy Category</label>
-                        <select name="category" id="category"  defaultValue={toyCate} required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
+                        <select name="category" id="category" defaultValue={toyCate}  required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
                             {
-                                toyCategory.map((toy, index) => <option onChange={() => setToyCate(toy)} key={index} value={toy}>{toy}</option>)
+                                toyCategory?.map((toy, index) => <option onChange={()=>setToyCate(key)} key={index} value={toy}>{toy}</option>)
+                            }
+                        </select>
+                    </div>
+                    <div className='w-1/2'>
+                        <label htmlFor="subCategory">Toy Sub-Category</label>
+                        <select name="subCategory" id="subCategory" defaultValue={toySubCat}  required className='w-full py-2 px-2 border-[1px] rounded-md mt-2'>
+                            {
+                                toySubCategory?.map((toy, index) => <option key={index} onChange={()=>setToySubCat(toy)} value={toy}>{toy}</option>)
                             }
                         </select>
                     </div>

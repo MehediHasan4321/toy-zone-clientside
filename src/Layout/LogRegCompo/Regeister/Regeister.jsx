@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { getAuth, updateProfile } from 'firebase/auth'
 import app from '../../../Firebase/firebase.config';
@@ -9,6 +9,8 @@ const Regeister = () => {
     const [error, setError] = useState('')
     setTimeout(() => setError(''), 7000);
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
     const auth = getAuth(app)
     const handleSignUp = (e) => {
         e.preventDefault()
@@ -24,7 +26,7 @@ const Regeister = () => {
                 })
                     .then(() => { })
                     .catch(err => setError(err.message))
-                navigate('/')
+                navigate(from)
                 form.reset()
             })
             .catch(err => {

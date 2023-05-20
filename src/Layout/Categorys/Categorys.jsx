@@ -10,6 +10,7 @@ const Categorys = () => {
     },[])
     return (
         <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-24'>
+            
             {
                 categorys.map(cate=><CetegoryCart key={cate._id} cate={cate}/>)
             }
