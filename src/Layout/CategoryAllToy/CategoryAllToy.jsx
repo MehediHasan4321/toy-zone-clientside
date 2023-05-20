@@ -1,13 +1,14 @@
 import { useLoaderData } from 'react-router-dom';
 import ToyCart from './ToyCart';
 import { useEffect, useState } from 'react';
+import useTitle from '../../CustomLoader/UseTitle';
 
 const CategoryAllToy = () => {
     const toys = useLoaderData()
     const subCataBtn = ["Action", "Villain", "Other"]
     const [subCategory, setSubCategory] = useState('Action')
     const [showtoy, setShowToy] = useState(toys)
-    
+    useTitle("Toy category")
     useEffect(() => {
         const filtertoy = toys.filter(toy => toy.subCategory === subCategory)
         

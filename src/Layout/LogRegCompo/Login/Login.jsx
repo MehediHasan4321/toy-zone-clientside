@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import useTitle from '../../../CustomLoader/UseTitle';
 
 const Login = () => {
     const {loginWithEmailPass} = useContext(AuthContext)
@@ -9,7 +10,7 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || '/'
-    
+    useTitle('Login')
     setTimeout(() => {
         setError('')
     }, 7000);

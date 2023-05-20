@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../CustomLoader/UseTitle';
 
 const NotFouondPage = () => {
+    useTitle('404 Page')
     return (
         <div className='container mx-auto flex justify-center items-center'>
             <div>

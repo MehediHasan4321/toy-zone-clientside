@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Loading from '../ShareCompo/Loading/Loading';
 import { Link } from 'react-router-dom';
+import useTitle from '../../CustomLoader/UseTitle';
 
 
 
@@ -13,7 +14,7 @@ const AllToys = () => {
     const productPerPage = 20;
     const totalPage = Math.ceil(totalProduct / productPerPage)
     const [searchText, setSearchText] = useState('')
-    
+    useTitle('All Toys')
     useEffect(() => {
         setIsLoading(true)
         fetch(`https://my-toy-shop-server.vercel.app/allToy?page=${currentPage}&limit=${productPerPage}`)

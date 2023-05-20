@@ -3,6 +3,7 @@ import Rating from '../ShareCompo/Rating/Rating';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { key } from 'localforage';
+import useTitle from '../../CustomLoader/UseTitle';
 
 const AddToys = () => {
     const toyCategory = ["marvel", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
@@ -11,6 +12,7 @@ const AddToys = () => {
     const {toySubCat,setToySubCat} = useState('')
     const [previewToy, setPreviewToy] = useState({})
     const { user } = useContext(AuthContext)
+    useTitle("Add Toy")
     const handleAddToyCartPreview = e => {
         e.preventDefault()
         const form = e.target;

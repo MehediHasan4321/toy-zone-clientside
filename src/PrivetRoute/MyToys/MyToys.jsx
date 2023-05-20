@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import MyToysTable from './MyToysTable';
 import Swal from 'sweetalert2';
+import useTitle from '../../CustomLoader/UseTitle';
 
 const Mytoys = () => {
     const allToy = useLoaderData()
@@ -9,7 +10,7 @@ const Mytoys = () => {
     const [updateAble, setUpdateAble] = useState({})
     const [toyCate, setCategory] = useState(updateAble.category)
     const [subCate,setSubCete] = useState(updateAble.subCategory)
-
+    useTitle('My Toys')
     const findToy = id => {
         setUpdateAble(toys.find(toy => toy._id === id))
     }

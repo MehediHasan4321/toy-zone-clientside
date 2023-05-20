@@ -2,9 +2,11 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Rating from '../../Layout/ShareCompo/Rating/Rating';
 import { FaCar, FaCashRegister, FaChartBar, FaFacebookMessenger, FaInfo, FaInfoCircle, FaLocationArrow } from 'react-icons/fa';
+import useTitle from '../../CustomLoader/UseTitle';
 
 const ToyDetails = () => {
     const toy = useLoaderData({})
+    useTitle('Toy Details')
     return (
         <div className='container mx-auto my-24 flex justify-between'>
             <img className='w-[450px] h-[550px] border-[1px] p-2' src={toy?.img} alt="Toy Images" />

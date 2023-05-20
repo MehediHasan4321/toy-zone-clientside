@@ -4,12 +4,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { getAuth, updateProfile } from 'firebase/auth'
 import app from '../../../Firebase/firebase.config';
+import useTitle from '../../../CustomLoader/UseTitle';
 const Regeister = () => {
     const { createAccountWithEmail } = useContext(AuthContext)
     const [error, setError] = useState('')
     setTimeout(() => setError(''), 7000);
     const navigate = useNavigate()
     const location = useLocation()
+    useTitle("Regester")
     const from = location?.state?.from?.pathname || '/'
     const auth = getAuth(app)
     const handleSignUp = (e) => {
