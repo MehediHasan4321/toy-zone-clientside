@@ -10,6 +10,7 @@ import ToyDetails from '../PrivetRoute/ToyDetails/ToyDetails';
 import AllToys from '../Layout/AllToys/AllToys';
 import Mytoys from '../PrivetRoute/MyToys/Mytoys';
 import AddToys from '../Layout/AddToys/AddToys';
+import NotFouondPage from '../Layout/NotFoundPage/NotFouondPage';
 
 
 const Router = createBrowserRouter([
@@ -59,6 +60,10 @@ const Router = createBrowserRouter([
                 element:<Regeister/>
             }
         ]
+    },
+    {
+        path:'*',
+        element:<NotFouondPage/>
     }
 ])
 

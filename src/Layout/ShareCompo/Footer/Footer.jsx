@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -7,11 +8,14 @@ const Footer = () => {
             <div className="container mx-auto">
                 <div className="footer flex justify-between flex-wrap p-10 bg-base-200 text-base-content">
                     <div>
-                        <span className="footer-title">Services</span>
-                        <a className="link link-hover">Branding</a>
-                        <a className="link link-hover">Design</a>
-                        <a className="link link-hover">Marketing</a>
-                        <a className="link link-hover">Advertisement</a>
+                        <span className="footer-title text-3xl">Toy Zone</span>
+                        <span>Follow Us On</span>
+                        <div className='flex gap-3'>
+                            <FaFacebook className='text-2xl' />
+                            <FaTwitter className='text-2xl' />
+                            <FaInstagram className='text-2xl' />
+                            <FaLinkedin className='text-2xl' />
+                        </div>
                     </div>
                     <div>
                         <span className="footer-title">Company</span>
@@ -19,7 +23,7 @@ const Footer = () => {
                         <Link to={'/blog'} className="link link-hover">Blog</Link>
                         <a className="link link-hover">Contact</a>
                         <a className="link link-hover">Jobs</a>
-                    
+
                     </div>
                     <div>
                         <span className="footer-title">Legal</span>
@@ -39,6 +43,10 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <hr className='border-[1px] w-full my-4' />
+                    <p className='text-center py-8'>Copyright © 2023 - All right reserved by Toy Zone</p>
                 </div>
             </div>
         </footer>
