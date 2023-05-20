@@ -25,9 +25,11 @@ const AllToys = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/searchToy/${searchText}`)
+        setIsLoading(true)
+        fetch(`https://my-toy-shop-server.vercel.app/searchToy/${searchText}`)
             .then(res => res.json())
             .then(data => setToys(data))
+            .finally(()=>setIsLoading(false))
     }, [searchText])
 
     const handleSeacrh = (event) => {
