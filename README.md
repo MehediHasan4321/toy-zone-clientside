@@ -1,4 +1,4 @@
-
+# note : If my side data not loaded clearly plz refresh the site more than 5 or 6 tiem. it's happend for vercel because vercel live like sometiem not work if we refresh my site several time them my site work perfectly.
 # Toy Zone
 
 Toy zone is a Online toy seller website.Our website has many usefull section like home page, product category,images gallary,user feedback,also have a contact and footer section.
