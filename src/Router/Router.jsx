@@ -11,6 +11,7 @@ import AllToys from '../Layout/AllToys/AllToys';
 import Mytoys from '../PrivetRoute/MyToys/Mytoys';
 import AddToys from '../Layout/AddToys/AddToys';
 import NotFouondPage from '../Layout/NotFoundPage/NotFouondPage';
+import Blog from '../Layout/Blog/Blog';
 
 
 const Router = createBrowserRouter([
@@ -44,6 +45,10 @@ const Router = createBrowserRouter([
             {
                 path:'/addToys',
                 element:<PrivetRoute><AddToys/></PrivetRoute>
+            },
+            {
+                path:'/blog',
+                element:<Blog/>
             }
         ]
     },

@@ -111,6 +111,7 @@ const Mytoys = () => {
         return (
             <div className='container mx-auto'>
                 <div className='my-2'>
+                    <span className='text-xl font-semibold mr-2'>Sort By Price</span>
                     <select onChange={hanldeSort} value={sortValue} className='px-4 py-2 bg-[#f2f2f2]' name="sort" id="">
                         <option value={1}>Assending</option>
                         <option value={-1}>Desending</option>
