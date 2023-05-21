@@ -15,6 +15,7 @@ const Mytoys = () => {
     const { user } = useContext(AuthContext)
     const toyCategory = ["marvel", "ironman", "venom", "adventure", "transformers", "spiderman", "batman", "starwar"]
     const toySubCategory = ["Action", "Villain", "Other"]
+   
     useTitle('My Toys')
     const findToy = id => {
         setUpdateAble(toys.find(toy => toy._id === id))
@@ -27,6 +28,9 @@ const Mytoys = () => {
             .finally(() => setIsLoading(false))
     }, [sortValue])
 
+    const hanldeSort = e => {
+        setSortValue(e.target.value)
+    }
 
     const updateToy = (e) => {
         e.preventDefault()
@@ -102,14 +106,14 @@ const Mytoys = () => {
         })
     }
     if (isLoading) {
-        return <Loading/>
+        return <Loading />
     } else {
         return (
             <div className='container mx-auto'>
-                <div className='mb-2'>
-                    <select className='px-4 py-2' name="sort" id="">
-                        <option onClick={() => setSortValue(1)} value={1}>Assending</option>
-                        <option onClick={() => setSortValue(-1)} value={-1}>Desending</option>
+                <div className='my-2'>
+                    <select onChange={hanldeSort} value={sortValue} className='px-4 py-2 bg-[#f2f2f2]' name="sort" id="">
+                        <option value={1}>Assending</option>
+                        <option value={-1}>Desending</option>
                     </select>
                 </div>
                 <div className="overflow-x-auto w-full">
