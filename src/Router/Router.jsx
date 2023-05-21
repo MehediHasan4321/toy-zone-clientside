@@ -37,9 +37,9 @@ const Router = createBrowserRouter([
                 element:<AllToys/>
             },
             {
-                path:'/myToys/:email',
-                element:<PrivetRoute><Mytoys/></PrivetRoute>,
-                loader:({params})=>fetch(`https://my-toy-shop-server.vercel.app/myToys/${params.email}`)
+                path:'/myToys',
+                element:<PrivetRoute><Mytoys/></PrivetRoute>
+                
             },
             {
                 path:'/addToys',
