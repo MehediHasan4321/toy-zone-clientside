@@ -7,7 +7,7 @@ import Loading from '../ShareCompo/Loading/Loading';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 const Header = () => {
     const {banners} = useContext(AuthContext)
-    const [isLoading, setIsLoading] = useState(true)
+   console.log(banners)
     
     const settings = {
         infinite: true,
