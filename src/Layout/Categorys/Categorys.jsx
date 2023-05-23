@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CetegoryCart from './CetegoryCart';
 
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+
 const Categorys = () => {
-    const [categorys,setCategorys] = useState([])
-    useEffect(()=>{
-        fetch('https://my-toy-shop-server.vercel.app/banners')
-        .then(res=>res.json())
-        .then(data=>setCategorys(data))
-    },[])
+    const {banners} = useContext(AuthContext)
+   
     return (
         <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-24'>
             
             {
-                categorys.map(cate=><CetegoryCart key={cate._id} cate={cate}/>)
+                banners.map(cate=><CetegoryCart key={cate._id} cate={cate}/>)
             }
         </div>
     );

@@ -7,6 +7,12 @@ const AuthProvider = ({children}) => {
     const [isLoading,setIsLoading] = useState(true)
     const googleProvider = new GoogleAuthProvider()
     const auth = getAuth(app)
+    const [banners,setBanners] = useState([])
+    useEffect(()=>{
+        fetch('https://my-toy-shop-server.vercel.app/banners')
+        .then(res=>res.json())
+        .then(data=>setBanners(data))
+    },[])
     const createAccountWithEmail = (email,password)=>{
         setIsLoading(true)
        return createUserWithEmailAndPassword(auth,email,password)
@@ -38,7 +44,8 @@ const AuthProvider = ({children}) => {
         createAccountWithGoogle,
         loginWithEmailPass,
         logOut,
-        isLoading
+        isLoading,
+        banners
     }
     return (
         <AuthContext.Provider value={userInfo}>
