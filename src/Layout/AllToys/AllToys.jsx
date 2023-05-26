@@ -17,18 +17,18 @@ const AllToys = () => {
     useTitle('All Toys')
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://my-toy-shop-server.vercel.app/allToy?page=${currentPage}&limit=${productPerPage}`)
+        fetch(`https://toyshop-zeta.vercel.app/allToy?page=${currentPage}&limit=${productPerPage}`)
             .then(res => res.json())
             .then(data => setToys(data))
             .finally(() => setIsLoading(false))
     }, [currentPage, totalPage])
     useEffect(() => {
-        fetch('https://my-toy-shop-server.vercel.app/totalToy').then(res => res.json()).then(data => setPage(data.totalProduct))
+        fetch('https://toyshop-zeta.vercel.app/totalToy').then(res => res.json()).then(data => setPage(data.totalProduct))
     }, [])
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://my-toy-shop-server.vercel.app/searchToy/${searchText}`)
+        fetch(`https://toyshop-zeta.vercel.app/searchToy/${searchText}`)
             .then(res => res.json())
             .then(data => setToys(data))
             .finally(()=>setIsLoading(false))

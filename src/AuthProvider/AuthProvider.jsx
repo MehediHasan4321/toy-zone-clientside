@@ -9,7 +9,7 @@ const AuthProvider = ({children}) => {
     const auth = getAuth(app)
     const [banners,setBanners] = useState([])
     useEffect(()=>{
-        fetch('https://my-toy-shop-server.vercel.app/banners')
+        fetch('https://toyshop-zeta.vercel.app/banners')
         .then(res=>res.json())
         .then(data=>setBanners(data))
     },[])

@@ -26,12 +26,12 @@ const Router = createBrowserRouter([
             {
                 path:'/categoryToys/:category',
                 element:<CategoryAllToy/>,
-                loader:({params})=>fetch(`https://my-toy-shop-server.vercel.app/allToy/${params.category}`)
+                loader:({params})=>fetch(`https://toyshop-zeta.vercel.app/allToy/${params.category}`)
             },
             {
                 path:'/toyDetails/:id',
                 element:<PrivetRoute><ToyDetails/></PrivetRoute>,
-                loader:({params})=>fetch(`https://my-toy-shop-server.vercel.app/toyDetails/${params.id}`)
+                loader:({params})=>fetch(`https://toyshop-zeta.vercel.app/singleToy/${params.id}`)
             },
             {
                 path:'/allToy',

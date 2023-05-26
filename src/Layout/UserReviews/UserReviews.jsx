@@ -4,7 +4,7 @@ import UserReviewCart from './UserReviewCart';
 const UserReviews = () => {
     const [reviews,setReviews] = useState([])
     useEffect(()=>{
-        fetch('https://my-toy-shop-server.vercel.app/userReview')
+        fetch('https://toyshop-zeta.vercel.app/userReview')
         .then(res=>res.json())
         .then(data=>setReviews(data))
     },[])

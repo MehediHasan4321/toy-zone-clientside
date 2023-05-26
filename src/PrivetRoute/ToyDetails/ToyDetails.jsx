@@ -1,11 +1,12 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Rating from '../../Layout/ShareCompo/Rating/Rating';
-import { FaCar, FaCashRegister, FaChartBar, FaFacebookMessenger, FaInfo, FaInfoCircle, FaLocationArrow } from 'react-icons/fa';
+import { FaCar, FaCashRegister, FaFacebookMessenger, FaInfo, FaInfoCircle, FaLocationArrow } from 'react-icons/fa';
 import useTitle from '../../CustomLoader/UseTitle';
 
 const ToyDetails = () => {
-    const toy = useLoaderData({})
+    const toy = useLoaderData()
+    console.log(toy)
     useTitle('Toy Details')
     return (
         <div className='container mx-auto my-24 flex justify-between'>

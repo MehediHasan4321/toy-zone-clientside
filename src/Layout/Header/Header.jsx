@@ -7,8 +7,6 @@ import Loading from '../ShareCompo/Loading/Loading';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 const Header = () => {
     const {banners} = useContext(AuthContext)
-   console.log(banners)
-    
     const settings = {
         infinite: true,
         slidesToShow: 1,

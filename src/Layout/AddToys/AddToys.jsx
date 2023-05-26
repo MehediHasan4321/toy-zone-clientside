@@ -41,7 +41,7 @@ const AddToys = () => {
             confirmButtonText: 'Yes, Added it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://my-toy-shop-server.vercel.app/addToy`, {
+                fetch(`https://toyshop-zeta.vercel.app/addToy`, {
                     method: "Post",
                     headers: { "content-type": "application/json" },
                     body: JSON.stringify(previewToy)

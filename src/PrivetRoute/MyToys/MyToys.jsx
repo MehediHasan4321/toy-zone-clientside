@@ -22,7 +22,7 @@ const Mytoys = () => {
     }
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://my-toy-shop-server.vercel.app/myToys/${user?.email}?sort=${sortValue}`)
+        fetch(`https://toyshop-zeta.vercel.app/myToys/${user?.email}?sort=${sortValue}`)
             .then(res => res.json())
             .then(data => setToys(data))
             .finally(() => setIsLoading(false))
@@ -55,7 +55,7 @@ const Mytoys = () => {
             confirmButtonText: 'Yes, Update it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://my-toy-shop-server.vercel.app/allToy/${updateAble._id}`, {
+                fetch(`https://toyshop-zeta.vercel.app/allToy/${updateAble._id}`, {
                     method: "PUT",
                     headers: { "content-type": "application/json" },
                     body: JSON.stringify(updateToy)
@@ -86,7 +86,7 @@ const Mytoys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://my-toy-shop-server.vercel.app/allToy/${id}`, {
+                fetch(`https://toyshop-zeta.vercel.app/allToy/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
